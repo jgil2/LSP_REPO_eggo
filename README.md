@@ -40,11 +40,22 @@ You can now double-click it to edit contents.
 ```
 
 **_External Internet Sources_**
+
 Link: https://stackoverflow.com/questions/58272300/how-do-i-read-a-csv-file-with-java
+
 Usage: Used approach for reading a csv file without etl libraries.
 
+
 Link: https://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
-Usage: Used approach to rounding numbers with BigDecimal with RoundingMode.HALF_UP
+
+Usage: Used approach to rounding numbers with BigDecimal with RoundingMode.HALF_UP.
+
 
 Link: https://www.w3schools.com/java/java_try_catch.asp
-Usage: Used for understanding how to create error messages in java
+
+Usage: Used for understanding how to create error messages in java.
+
+
+Link: https://examples.javacodegeeks.com/checking-if-a-file-is-empty-in-java/
+
+Usage: Used approach for checking if a file is empty.
