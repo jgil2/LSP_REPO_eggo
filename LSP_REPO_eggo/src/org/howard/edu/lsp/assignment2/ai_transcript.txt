@@ -1,0 +1,7 @@
+How do I create a csv file under a directory in Eclipse IDE?
+
+Google
+how to read csv files using java without third-party etl libraries
+https://stackoverflow.com/questions/58272300/how-do-i-read-a-csv-file-with-java
+https://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
+https://www.w3schools.com/java/java_try_catch.asp used it for error message
