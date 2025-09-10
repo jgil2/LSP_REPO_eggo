@@ -114,14 +114,19 @@ public class ETLPipeline {
                         fields[i] = fields[i].trim().replaceAll("^\"|\"$", "");
                     }
                 	
-                	int productId = Integer.parseInt(fields[0].trim());
-                    String name = fields[1].trim();
-                    double price = Double.parseDouble(fields[2].trim());
-                    String category = fields[3].trim();
-                    product.add(new Products(productId, name, price, category));
-                    rowsTransformed++;
+                	try {
+                		int productId = Integer.parseInt(fields[0].trim());
+                		String name = fields[1].trim();
+                		double price = Double.parseDouble(fields[2].trim());
+                		String category = fields[3].trim();
+                		product.add(new Products(productId, name, price, category));
+                		rowsTransformed++;
+                	} catch (NumberFormatException e) {
+                		System.out.println("Skipping malformed row (invalid number): " + line);
+                		rowsSkipped++;
+                	}
                 } else {
-                    System.out.println("Skipping malformed line: " + line);
+                    System.out.println("Skipping malformed line (wrong number of columns): " + line);
                     rowsSkipped++;
                 }
             }
