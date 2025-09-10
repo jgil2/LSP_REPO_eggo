@@ -8,7 +8,7 @@ The input file is data/products.csv.
 
 Compile and run the program from the project root.
 
-The output file should be written to data/transformed_products.csv or data/transformed_products_empty.csv if the input file is empty.
+The output file should be written to data/transformed_products.csv. Open the file in a text editor, not Excel. Excel will not show the desired output correctly.
 
 **_Transformations_**
 
