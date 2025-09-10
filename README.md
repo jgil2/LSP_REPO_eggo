@@ -1,4 +1,6 @@
-This program is a simple implementation of the ETL pipeline using Java. It reads the products file, applies transformations to certain columns and then writes that data to a new CSV file.
+**_Overview_**
+
+This program is a simple implementation of the ETL pipeline using Java. It reads the products file, applies transformations to certain columns and then writes that data to a new CSV file. At the end of execution, a run summary including rows read, transformed, skipped and the output path the new file is written to is printed.
 
 **_How to Run_**
 
@@ -7,6 +9,56 @@ The input file is data/products.csv.
 Compile and run the program from the project root.
 
 The output file should be written to data/transformed_products.csv or data/transformed_products_empty.csv if the input file is empty.
+
+**_Transformations_**
+
+The following transformations are done in order:
+
+1. Uppercase: The product names are changed to uppercase.
+
+2. Discount for Electronics: For products under Electronics category, a 10% discount is applied to the price. Those prices are rounded to 2 decimal places with BigDecimal.
+
+3. Premium Electronics: If the post-discount price is over 500 for electronics, the category is changed to Premium Electronics.
+
+4. Price Range Classification: A new column called PriceRange is added based on the price:
+
+0–10 → Low
+
+10.01–100 → Medium
+
+100.01–500 → High
+
+500 → Premium 
+
+**_Error Handling_**
+
+Missing input file - It prints an error message and stops the program.
+
+Empty input file → It prints a warning to the user and writes only the header row to transformed_products_empty.csv.
+
+**_Assumptions_**
+
+The input file always contains a header row.
+
+ProductID and Price are expected to be numeric.
+
+Only relative paths (data/...) are used, so that the program works across environments.
+
+**_Design Notes_**
+
+The Products class encapsulates product data and transformation logic.
+
+The ETL steps are separated into load, transformation methods (uppercase, discount, over500, priceRange), and saveTransformed to match Extract–Transform–Load.
+
+**_Testing_**
+
+The program was tested under several scenarios:
+
+Normal case: Multiple valid rows - Output file contains all rows with transformations applied.
+
+Empty file: Input file contains only headers - Output is written to transformed_products_empty.csv.
+
+Missing file: Deleted products.csv - Program prints an error and exits.
 
 **_AI Usage_**
 
