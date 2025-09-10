@@ -80,7 +80,7 @@ public class ETLPipeline {
         List<Products> product = load(inputPath);
         
         if (product.isEmpty()) {
-        	System.out.println("Warning: The input file has no data rows. The output file will only have the header row.");
+        	System.out.println("Warning: The input file has no data rows. The output file will only have the header row."); // prints this message if the file only has a header row.
         }
         
         for (Products p : product) {
