@@ -81,7 +81,6 @@ public class ETLPipeline {
         
         if (product.isEmpty()) {
         	System.out.println("Warning: The input file has no data rows. The output file will only have the header row.");
-        	outputPath = "data/transformed_products_empty.csv"; // only prints header row to this output path
         }
         
         for (Products p : product) {
