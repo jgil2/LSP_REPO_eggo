@@ -28,13 +28,15 @@ The following transformations are done in order:
 
 100.01–500 → High
 
-500 → Premium 
+500+ → Premium 
 
 **_Error Handling_**
 
 Missing input file - It prints an error message and stops the program.
 
-Empty input file → It prints a warning to the user and writes only the header row to transformed_products_empty.csv.
+Empty input file - It prints a warning to the user and writes only the header row to transformed_products_empty.csv.
+
+Malformed row - It skips the row and prints a warning.
 
 **_Assumptions_**
 
@@ -50,6 +52,12 @@ The Products class encapsulates product data and transformation logic.
 
 The ETL steps are separated into load, transformation methods (uppercase, discount, over500, priceRange), and saveTransformed to match Extract–Transform–Load.
 
+Run Summary: At the end of execution, the program prints:
+- Rows read
+- Rows transformed
+- Rows skipped
+- Output file path
+
 **_Testing_**
 
 The program was tested under several scenarios:
@@ -57,6 +65,8 @@ The program was tested under several scenarios:
 Normal case: Multiple valid rows - Output file contains all rows with transformations applied.
 
 Empty file: Input file contains only headers - Output is written to transformed_products_empty.csv.
+
+Malformed row: The row is skipped and is counted in summary.
 
 Missing file: Deleted products.csv - Program prints an error and exits.
 
