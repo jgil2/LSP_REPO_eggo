@@ -4,7 +4,17 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
+/**
+ * Applies transformations to Product objects according to business rules.
+ * Handles name formatting, discounts, recategorization, and price range calculation.
+ */
+
 public class Transformer {
+	/**
+     * Applies all transformations to the given product.
+     *
+     * @param product the product to transform
+     */
     public void transform(List<Product> products) {
         for (Product p : products) {
             // 1. Uppercase name
@@ -31,7 +41,13 @@ public class Transformer {
     private double round(double value) {
         return new BigDecimal(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
-
+    
+    /**
+     * Determines the price range category for a given price.
+     *
+     * @param price the final product price
+     * @return a string label ("Low", "Medium", "High", "Premium")
+     */
     private String determinePriceRange(double price) {
         if (price <= 10.00) return "Low";
         if (price <= 100.00) return "Medium";

@@ -2,7 +2,17 @@ package org.howard.edu.lsp.assignment3;
 
 import java.util.*;
 
+/**
+ * Coordinates the ETL (Extract-Transform-Load) pipeline.
+ * Orchestrates reading input data, applying transformations,
+ * and writing the output file. Also prints a run summary.
+ */
 public class ETLPipeline {
+	/**
+     * Main entry point for the ETL pipeline.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         String inputPath = "data/products.csv";
         String outputPath = "data/transformed_products.csv";
@@ -25,6 +35,14 @@ public class ETLPipeline {
             int rowsTransformed = products.size();
             int rowsSkipped = extractor.getRowsSkipped();
 
+            /**
+             * Prints a summary of the run including rows read, transformed, and skipped.
+             *
+             * @param rowsRead number of rows read from input
+             * @param rowsTransformed number of rows successfully transformed
+             * @param rowsSkipped number of rows skipped due to errors
+             * @param outputPath path of the written output file
+             */
             System.out.println("=== Run Summary ===");
             System.out.println("Rows read: " + rowsRead);
             System.out.println("Rows transformed: " + rowsTransformed);

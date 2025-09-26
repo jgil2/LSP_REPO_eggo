@@ -3,9 +3,22 @@ package org.howard.edu.lsp.assignment3;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Handles extracting product data from a CSV file.
+ * Reads the file line by line and converts each row into a Product object.
+ */
+
 public class Extractor {
     private int rowsRead = 0;
     private int rowsSkipped = 0;
+    
+    /**
+     * Reads products from a CSV file and returns them as a list.
+     *
+     * @param inputPath relative path to the input CSV file
+     * @return list of Product objects extracted from the file
+     * @throws IOException if the file cannot be read
+     */
 
     public List<Product> extract(String inputPath) throws IOException {
         List<Product> products = new ArrayList<>();
@@ -24,7 +37,7 @@ public class Extractor {
                 rowsRead++;
                 String[] cols = line.split(",");
 
-                // ✅ enforce exactly 4 columns
+                // enforce exactly 4 columns
                 if (cols.length != 4) {
                 	System.out.println("Skipping malformed line: " + line);
                     rowsSkipped++;
