@@ -32,8 +32,8 @@ public class ETLPipeline {
             loader.load(products, outputPath);
 
             int rowsRead = extractor.getRowsRead();
-            int rowsTransformed = products.size();
             int rowsSkipped = extractor.getRowsSkipped();
+            int rowsTransformed = rowsRead - rowsSkipped;
 
             /**
              * Prints a summary of the run including rows read, transformed, and skipped.
