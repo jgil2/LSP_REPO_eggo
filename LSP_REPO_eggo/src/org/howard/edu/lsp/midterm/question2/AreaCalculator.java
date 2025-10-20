@@ -14,6 +14,7 @@ public class AreaCalculator {
 		}
 
 	}
+	// Overloading is defining multiple methods with the same name but with different parameters. There are four area methods but all of them have a different parameter list. Overloading is the better design choice because it improves readability, encourages cohesion and demonstrates polymorphism.
 	
 	// Circle area
 	public static double area(double radius) {

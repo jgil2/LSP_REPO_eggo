@@ -81,3 +81,109 @@ Triangle area: 14.0
 Square area: 25.0
 Error: Radius must be greater than 0.
 
+Prompt: Is the AreaCalculator class using overloading?
+Response: ✅ Yes — your AreaCalculator class is using method overloading.
+
+Here’s why, and how it works:
+
+💡 What Method Overloading Means
+
+Overloading = defining multiple methods with the same name (area),
+but with different parameter lists (type, number, or order of parameters).
+
+The compiler decides which version to call based on the arguments you pass.
+
+🧩 In Your AreaCalculator
+
+You have four area() methods, each with a distinct parameter signature:
+
+Method	Parameters	Purpose
+area(double radius)	one double	Circle
+area(double width, double height)	two doubles	Rectangle
+area(int base, int height)	two ints	Triangle
+area(int side)	one int	Square
+
+Even though all share the name area, the parameter types/count differ, so Java knows which to use when you call it.
+
+🧠 Example
+System.out.println(area(5));        // Calls area(int side) → square
+System.out.println(area(5.0));      // Calls area(double radius) → circle
+System.out.println(area(4, 6));     // Calls area(int base, int height) → triangle
+System.out.println(area(4.0, 6.0)); // Calls area(double width, double height) → rectangle
+
+
+Each call matches a different overload automatically.
+
+✅ Summary
+
+✔ Same method name (area)
+
+✔ Different parameter lists (number & type)
+
+✔ Compiler resolves which one to run → This is method overloading
+
+Prompt: why is overloading the better design choice?
+Response: Excellent question 👏 — and this is a great concept to understand deeply.
+
+Using method overloading in your AreaCalculator is a better object-oriented design choice for several clear reasons:
+
+✅ 1. Improves Readability & Consistency
+
+All methods perform the same conceptual action — calculating an area.
+By giving them all the same name (area), you make your API easy to read and remember.
+
+Instead of:
+
+circleArea(radius);
+rectangleArea(width, height);
+triangleArea(base, height);
+squareArea(side);
+
+
+You simply write:
+
+area(radius);
+area(width, height);
+area(base, height);
+area(side);
+
+
+→ The user only needs to remember one method name, not four.
+
+✅ 2. Demonstrates Polymorphism (Compile-time)
+
+Overloading is a form of compile-time polymorphism.
+The compiler chooses the correct area() version based on argument types.
+
+This gives you flexibility and still keeps your interface uniform.
+
+✅ 3. Encourages Cohesion
+
+All the area() methods deal with the same domain concept — area computation.
+By grouping them in one class under one method name:
+
+The class stays cohesive (focused on one concept: area calculation).
+
+The code is easier to maintain, extend, or test.
+
+✅ 4. Scalability & Extensibility
+
+If you later add a new shape (e.g., area(double base, double height, double depth) for a 3D prism’s surface),
+you can just add another overload without changing existing code or method names.
+
+✅ 5. Improves API Usability
+
+From a user’s perspective, it “just makes sense”:
+
+“I want the area of a shape — not to memorize a different method for each shape.”
+
+This keeps your API simple, intuitive, and consistent — a key goal in clean software design.
+
+⚖️ Summary Table
+Design	Pros	Cons
+Overloading (area())	Clean, unified API, cohesive, intuitive	Requires careful parameter choice to avoid ambiguity
+Separate names (circleArea(), triangleArea(), …)	Explicit and unambiguous	Verbose, repetitive, lower cohesion
+
+✅ Conclusion:
+Overloading is the better design because it combines clarity, cohesion, and polymorphism — essential traits of good object-oriented programming.
+
