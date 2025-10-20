@@ -1,0 +1,83 @@
+References used:
+https://www.w3schools.com/java/java_math.asp
+https://stackoverflow.com/questions/26960941/catching-illegalargumentexception
+
+ChatGPT
+prompt:
+how do I add the illegal argument exception to this class to throw if any dimension is less than or equal to 0? package org.howard.edu.lsp.midterm.question2; public class AreaCalculator { public static void main(String[] args) { try { if } catch } // Circle area public static double area(double radius) { try { double circleArea = Math.PI * Math.pow(radius, 2); return circleArea; } catch (IllegalArgumentException e) { System.err.println("Error: " + e.getMessage()); } } // Rectangle area public static double area(double width, double height) { double rectangleArea = width * height; return rectangleArea; } // Triangle (base & height) area public static double area(int base, int height) { double triangleArea = (1/2) * base * height; return triangleArea; } // Square (side length) area public static double area(int side) { double squareArea = Math.pow(side, side); return squareArea; } }
+
+response: Excellent — let’s fix and modernize this AreaCalculator properly 👇
+
+You want to throw an IllegalArgumentException whenever any dimension ≤ 0, across all area methods.
+You also have a few logic issues (like the triangle area (1/2) integer division and square formula).
+
+Here’s the cleaned, corrected, and safe version:
+
+package org.howard.edu.lsp.midterm.question2;
+
+public class AreaCalculator {
+
+    public static void main(String[] args) {
+        try {
+            System.out.println("Circle area: " + area(5));
+            System.out.println("Rectangle area: " + area(4, 6));
+            System.out.println("Triangle area: " + area(4, 7));
+            System.out.println("Square area: " + area(5));
+            
+            // Example invalid input
+            System.out.println("Invalid circle: " + area(-3));
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
+    // Circle area
+    public static double area(double radius) {
+        if (radius <= 0) {
+            throw new IllegalArgumentException("Radius must be greater than 0.");
+        }
+        return Math.PI * Math.pow(radius, 2);
+    }
+
+    // Rectangle area
+    public static double area(double width, double height) {
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Width and height must be greater than 0.");
+        }
+        return width * height;
+    }
+
+    // Triangle area
+    public static double area(int base, int height) {
+        if (base <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Base and height must be greater than 0.");
+        }
+        return 0.5 * base * height; // fixed 1/2 integer division
+    }
+
+    // Square area
+    public static double area(int side) {
+        if (side <= 0) {
+            throw new IllegalArgumentException("Side length must be greater than 0.");
+        }
+        return Math.pow(side, 2); // corrected formula
+    }
+}
+
+✅ Fixes Explained
+
+IllegalArgumentException checks: added at the top of every area() method.
+
+Triangle formula fixed → 0.5 * base * height instead of (1/2) * base * height (integer division bug).
+
+Square formula fixed → Math.pow(side, 2) instead of Math.pow(side, side).
+
+Try–catch only in main() → exceptions are thrown by methods, handled once in main.
+
+🧠 Output Example
+Circle area: 78.53981633974483
+Rectangle area: 24.0
+Triangle area: 14.0
+Square area: 25.0
+Error: Radius must be greater than 0.
+
