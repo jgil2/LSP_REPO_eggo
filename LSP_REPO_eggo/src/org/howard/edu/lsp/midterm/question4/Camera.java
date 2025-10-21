@@ -1,14 +1,11 @@
 package org.howard.edu.lsp.midterm.question4;
 
-public abstract class DoorLock extends Device implements Networked, BatteryPowered {
+public class Camera extends Device implements Networked, BatteryPowered {
 	private int batteryPercent;
-	
-	public DoorLock(String id, String location, int batteryPercent) {
+
+	public Camera(String id, String location, int initialBattery) {
 		super(id, location);
-		if (batteryPercent < 0 || batteryPercent > 100) {
-            throw new IllegalArgumentException("Battery must be 0-100%");
-        }
-		this.batteryPercent = batteryPercent;
+		setBatteryPercent(initialBattery);
 	}
 	
 	// Networked
@@ -26,9 +23,8 @@ public abstract class DoorLock extends Device implements Networked, BatteryPower
 	// Status
 	@Override public String getStatus() {
 	  String connStatus = isConnected() ? "up" : "down";
-	  return "DoorLock[id=" + getId() + ", loc=" + getLocation() +
+	  return "Camera[id=" + getId() + ", loc=" + getLocation() +
 	         ", conn=" + connStatus + ", batt=" + batteryPercent + "%]";
 	}
-
 
 }

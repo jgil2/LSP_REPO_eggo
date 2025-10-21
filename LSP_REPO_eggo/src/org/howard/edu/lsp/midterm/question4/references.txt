@@ -110,3 +110,96 @@ private int batteryPercent inside method	Move to class field
 Abstract class with main()	Move testing logic to another class
 Minor readability	Keep consistent field + method placement
 
+Prompt: What's wrong with the Thermostat class?
+Response: Good question 👍 — there are several compile-time errors and design issues in this Thermostat class.
+Let’s go step-by-step to fix it properly.
+
+❌ Problems
+1. Invalid method declarations
+public double getTemperatureC();
+public void setTemperatureC(double temperatureC);
+
+
+These two lines end with semicolons but are not declared abstract, nor have method bodies.
+In Java, you can only write a method like that if:
+
+You mark it as abstract and
+
+The enclosing class is abstract (which it is — so that’s allowed).
+
+If you intend to implement the methods, they need curly braces {} and actual code.
+If you intend to leave them abstract for subclasses to implement, add the abstract keyword.
+
+2. Inconsistent intent
+
+Right now, you already store and initialize temperatureC in the abstract class,
+so it makes sense to implement the getters/setters here instead of leaving them abstract.
+
+3. Minor style fix
+
+Field assignment should use the setter for validation (e.g., check if the temp is within valid range).
+
+✅ Fixed, Working Version
+
+Here’s the correct implementation:
+
+package org.howard.edu.lsp.midterm.question4;
+
+public abstract class Thermostat extends Device implements Networked {
+    private double temperatureC;
+
+    public Thermostat(String id, String location, double initialTempC) {
+        super(id, location);
+        setTemperatureC(initialTempC);
+    }
+
+    // Temperature accessors
+    public double getTemperatureC() {
+        return temperatureC;
+    }
+
+    public void setTemperatureC(double temperatureC) {
+        // Optional: add realistic validation
+        if (temperatureC < -50 || temperatureC > 50) {
+            throw new IllegalArgumentException("Temperature must be between -50°C and 50°C.");
+        }
+        this.temperatureC = temperatureC;
+    }
+
+    // Networked
+    @Override 
+    public void connect() { setConnected(true); }
+
+    @Override 
+    public void disconnect() { setConnected(false); }
+
+    @Override 
+    public boolean isConnected() { return super.isConnected(); }
+
+    // Status
+    @Override 
+    public String getStatus() {
+        String connStatus = isConnected() ? "up" : "down";
+        return "Thermostat[id=" + getId() + ", loc=" + getLocation() +
+               ", conn=" + connStatus + ", tempC=" + temperatureC + "]";
+    }
+}
+
+🧠 If you meant to make those abstract:
+
+You could instead write:
+
+public abstract double getTemperatureC();
+public abstract void setTemperatureC(double temperatureC);
+
+
+…but then remove the field and constructor initialization, and let subclasses handle it —
+which doesn’t make much sense here, since all thermostats should share those base behaviors.
+
+✅ Summary of Fixes
+
+Issue	Fix
+Invalid method declarations	Implement or mark as abstract
+Field temperatureC initialization	Use setter in constructor
+Validation	Added optional range check for realism
+Abstract class design	Now logically consistent and compilable
