@@ -4,17 +4,20 @@ public class AreaCalculator {
 
 	public static void main(String[] args) {
 		try {
-			System.out.println("Circle area: " + area(3.0));
-            System.out.println("Rectangle area: " + area(5.0, 2.0));
-            System.out.println("Triangle area: " + area(10, 6));
-            System.out.println("Square area: " + area(4)); 
+			System.out.println("Circle radius 3.0 → area = " + area(3.0));
+            System.out.println("Rectangle 5.0 x 2.0 → area = " + area(5.0, 2.0));
+            System.out.println("Triangle base 10, height 6 → area = " + area(10, 6));
+            System.out.println("Square side 4 → area = " + area(4));
+            System.out.println("Square side 4 → area = " + area(-4));
 			
 		} catch (IllegalArgumentException e) {
 			System.err.println("Error: " + e.getMessage());
 		}
 
 	}
-	// Overloading is defining multiple methods with the same name but with different parameters. There are four area methods but all of them have a different parameter list. Overloading is the better design choice because it improves readability, encourages cohesion and demonstrates polymorphism.
+	// Overloading is defining multiple methods with the same name but with different parameters.
+	// There are four area methods but all of them have a different parameter list.
+	// Overloading is the better design choice because it improves readability, encourages cohesion and demonstrates polymorphism.
 	
 	// Circle area
 	public static double area(double radius) {
