@@ -203,3 +203,5 @@ Invalid method declarations	Implement or mark as abstract
 Field temperatureC initialization	Use setter in constructor
 Validation	Added optional range check for realism
 Abstract class design	Now logically consistent and compilable
+
+Prompt: What's wrong with the main class?

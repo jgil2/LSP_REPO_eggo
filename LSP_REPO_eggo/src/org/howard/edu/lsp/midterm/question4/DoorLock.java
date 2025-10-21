@@ -1,6 +1,6 @@
 package org.howard.edu.lsp.midterm.question4;
 
-public abstract class DoorLock extends Device implements Networked, BatteryPowered {
+public class DoorLock extends Device implements Networked, BatteryPowered {
 	private int batteryPercent;
 	
 	public DoorLock(String id, String location, int batteryPercent) {

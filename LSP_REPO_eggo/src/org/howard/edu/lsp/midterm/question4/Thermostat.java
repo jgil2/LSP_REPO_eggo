@@ -1,6 +1,6 @@
 package org.howard.edu.lsp.midterm.question4;
 
-public abstract class Thermostat extends Device implements Networked {
+public class Thermostat extends Device implements Networked {
 	private double temperatureC;
 	
 	public Thermostat(String id, String location, double initialTempC) {
