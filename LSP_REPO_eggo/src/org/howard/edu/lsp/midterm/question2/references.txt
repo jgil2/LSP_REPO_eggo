@@ -187,3 +187,94 @@ Separate names (circleArea(), triangleArea(), …)	Explicit and unambiguous	Verb
 ✅ Conclusion:
 Overloading is the better design because it combines clarity, cohesion, and polymorphism — essential traits of good object-oriented programming.
 
+Prompt: Grade this assignment
+Response: Here’s a detailed grading assessment for your AreaCalculator submission based on the rubric:
+
+1. Implementation (10 pts)
+
+Criteria: Correct use of method overloading (same name, different signatures), correct formulas, proper exception handling.
+
+Assessment:
+
+✅ All four area methods use the same name area with different parameter lists.
+
+✅ Correct formulas for each shape:
+
+Circle: Math.PI * r^2
+
+Rectangle: width * height
+
+Triangle: 0.5 * base * height
+
+Square: side^2
+
+✅ Each method checks for invalid input (≤ 0) and throws IllegalArgumentException.
+
+Minor note: main only demonstrates valid cases; no explicit call to trigger an exception inside main. The try/catch is present but will never catch an exception as-is.
+
+Score: 9/10 (full points for method correctness and overloading, 1 pt deduction because exception demonstration is missing).
+
+2. Program Behavior (6 pts)
+
+Criteria: Main correctly invokes all methods statically, produces required output exactly, includes working exception demonstration.
+
+Assessment:
+
+✅ Methods are invoked statically.
+
+❌ Output does not exactly match the required output format from the instructions. Required outputs were:
+
+Circle radius 3.0 → area = 28.274333882308138
+Rectangle 5.0 x 2.0 → area = 10.0
+Triangle base 10, height 6 → area = 30.0
+Square side 4 → area = 16.0
+
+
+Your main prints:
+
+Circle area: 28.274333882308138
+Rectangle area: 10.0
+Triangle area: 30.0
+Square area: 16.0
+
+
+❌ No method invocation demonstrates an exception. Try/catch is present but no negative or zero value is tested.
+
+Score: 4/6 (deduct 2 pts for incorrect formatting and missing exception demonstration).
+
+3. Conceptual Understanding (4 pts)
+
+Criteria: Brief explanation of why overloading is the better design choice.
+
+Assessment:
+
+✅ You explain that overloading defines multiple methods with the same name but different parameters.
+
+✅ You correctly mention benefits: readability, cohesion, polymorphism.
+
+Score: 4/4
+
+Overall Grade
+Category	Points
+Implementation	9/10
+Program Behavior	4/6
+Conceptual Understanding	4/4
+Total	17/20
+
+Comments / Recommendations:
+
+Update main to produce the exact required output using the specified format. Example:
+
+System.out.println("Circle radius 3.0 → area = " + area(3.0));
+
+
+Include at least one call that triggers an IllegalArgumentException, e.g.:
+
+try {
+    area(-5);
+} catch (IllegalArgumentException e) {
+    System.out.println("Caught an error: " + e.getMessage());
+}
+
+
+Everything else is excellent: formulas, overloading, exception handling, and conceptual explanation.
