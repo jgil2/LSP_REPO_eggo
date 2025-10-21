@@ -1,0 +1,112 @@
+https://www.geeksforgeeks.org/java/interfaces-in-java/
+
+Prompt: what's wrong with this code?
+Response: Good catch — there are multiple issues in your DoorLock class that prevent it from compiling.
+Let’s go through them one by one 👇
+
+❌ 1. You declared main() incorrectly
+private static void main(String[] args) {
+    private int batteryPercent;
+}
+
+🔹 Problems:
+
+main() must be public static void main(String[] args) — not private.
+
+You cannot declare a private variable inside a method like this (private int batteryPercent;).
+
+Also, a main() method doesn’t belong in an abstract class — you can’t instantiate it anyway.
+
+✅ Fix:
+
+Delete this entire main() block.
+If you want to test the class, do it in a separate test class, like DoorLockTest.java.
+
+❌ 2. batteryPercent is defined in the wrong place
+
+You tried to define it inside the main() method.
+It should be a field at the class level, outside of any methods.
+
+✅ Fix:
+
+Move it above your constructor:
+
+public abstract class DoorLock extends Device implements Networked, BatteryPowered {
+    private int batteryPercent;  // 👈 correct location
+
+    public DoorLock(String id, String location, int initialBattery) {
+        super(id, location);
+        setBatteryPercent(initialBattery);
+    }
+    ...
+}
+
+❌ 3. Abstract class shouldn’t be instantiated
+
+This one isn’t a compiler error, but a design one:
+You can’t run main() in an abstract class because you can’t create a new DoorLock().
+That’s by design — you’ll need a subclass like SmartDoorLock to implement/instantiate.
+
+✅ 4. Other minor notes
+
+Everything else looks fine:
+
+Properly overrides Networked and BatteryPowered methods.
+
+Throws IllegalArgumentException correctly for invalid battery levels.
+
+Status string is clean and formatted well.
+
+✅ Fixed Version
+
+Here’s the corrected class:
+
+package org.howard.edu.lsp.midterm.question4;
+
+public abstract class DoorLock extends Device implements Networked, BatteryPowered {
+    private int batteryPercent;
+
+    public DoorLock(String id, String location, int initialBattery) {
+        super(id, location);
+        setBatteryPercent(initialBattery);
+    }
+
+    // Networked
+    @Override 
+    public void connect() { setConnected(true); }
+
+    @Override 
+    public void disconnect() { setConnected(false); }
+
+    @Override 
+    public boolean isConnected() { return super.isConnected(); }
+
+    // BatteryPowered
+    @Override 
+    public int getBatteryPercent() { return batteryPercent; }
+
+    @Override 
+    public void setBatteryPercent(int percent) {
+        if (percent < 0 || percent > 100)
+            throw new IllegalArgumentException("Battery percent must be between 0 and 100.");
+        this.batteryPercent = percent;
+    }
+
+    // Status
+    @Override 
+    public String getStatus() {
+        String connStatus = isConnected() ? "up" : "down";
+        return "DoorLock[id=" + getId() + ", loc=" + getLocation() +
+               ", conn=" + connStatus + ", batt=" + batteryPercent + "%]";
+    }
+}
+
+
+✅ Summary of Fixes
+
+Issue	Fix
+Wrong main() declaration	Remove it entirely
+private int batteryPercent inside method	Move to class field
+Abstract class with main()	Move testing logic to another class
+Minor readability	Keep consistent field + method placement
+
