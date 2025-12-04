@@ -1,0 +1,122 @@
+/* Import a classy font from Google Fonts (e.g., Montserrat or Poppins) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 50px;
+}
+
+#container {
+    background-color: #ffffff; /* Classy white card */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle 3D lift */
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Headings and inputs */
+h1 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+#location-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#location {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    min-width: 150px;
+    transition: border-color 0.3s;
+}
+
+#location:focus {
+    border-color: #007bff; /* Classy blue highlight */
+    outline: none;
+}
+
+#action-buttons {
+    display: flex;
+    gap: 5px; /* Small gap between the two buttons */
+}
+
+#initial-prompt {
+    font-size: 0.9em;
+    color: #777;
+    margin-left: 10px;
+}
+
+button {
+    background-color: #007bff; /* Primary action color */
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.tab-content { 
+    display: none; 
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa; 
+    text-align: left;
+    line-height: 1.8;
+    color: #555;
+    min-height: 100px; /* Give the box a minimum size */
+}
+
+.tab-content.active { 
+    display: block; 
+}
+
+#result-tabs strong {
+    font-size: 1.4em;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* style.css additions */
+.forecast-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.forecast-item {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.forecast-item p {
+    margin: 0;
+}

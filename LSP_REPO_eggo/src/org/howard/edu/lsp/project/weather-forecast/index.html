@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+      <h1>Weather Forecast</h1>
+
+      <div id="location-input">
+        <input type="text" id="location" placeholder="Enter city or zip code..." autofocus>
+        <div id="action-buttons">
+          <button onclick="fetchWeather('current')" id="current-btn">Current</button>
+          <button onclick="fetchWeather('forecast')" id="forecast-btn">Forecast</button> 
+        </div>
+    </div>
+
+    <div id="result-tabs">
+        <div id="current-content" class="tab-content active">
+            Enter a location above to see the current conditions.
+        </div>
+        <div id="forecast-content" class="tab-content">
+            
+        </div>
+    </div>
+    
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+    <script src="script.js"></script>
+</body>
+</html>
